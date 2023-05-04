@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://wvsjn6r03b25"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_8uw3p"]
+[ext_resource type="Texture2D" uid="uid://c18x2t10lx016" path="res://Textures/player.png" id="2_usqo7"]
+[ext_resource type="Script" path="res://Player/EngineParticles.gd" id="3_iqu07"]
+
+[sub_resource type="Gradient" id="Gradient_anc63"]
+offsets = PackedFloat32Array(0.57037, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_02t07"]
+gradient = SubResource("Gradient_anc63")
+
+[sub_resource type="Curve" id="Curve_ui8md"]
+min_value = -500.0
+max_value = 500.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ml5ux"]
+curve = SubResource("Curve_ui8md")
+
+[sub_resource type="Curve" id="Curve_fn4wi"]
+max_value = 100.0
+_data = [Vector2(0, 100), 0.0, -150.909, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o37b3"]
+curve = SubResource("Curve_fn4wi")
+
+[sub_resource type="Curve" id="Curve_0o3xe"]
+min_value = 5.0
+max_value = 10.0
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.981928, 10), 11.7709, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yn2m"]
+curve = SubResource("Curve_0o3xe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m3hhp"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+orbit_velocity_curve = SubResource("CurveTexture_ml5ux")
+radial_accel_max = 1.0
+radial_accel_curve = SubResource("CurveTexture_o37b3")
+angle_min = -180.0
+angle_max = 180.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_4yn2m")
+color_ramp = SubResource("GradientTexture1D_02t07")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("engine_particles", "aiming_point")]
+script = ExtResource("1_8uw3p")
+engine_particles = NodePath("EngineParticles")
+aiming_point = NodePath("AimingPoint")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_usqo7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(10, 10, -10, 10, 0, -10)
+
+[node name="EngineParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 10)
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_m3hhp")
+script = ExtResource("3_iqu07")
+
+[node name="AimingPoint" type="Node2D" parent="."]
+position = Vector2(0, -10)
