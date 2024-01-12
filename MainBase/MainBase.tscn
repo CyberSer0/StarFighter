@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3v422jkymmkl"]
+
+[ext_resource type="Texture2D" uid="uid://bpuhho3y1vywh" path="res://Textures/mainbase.png" id="1_ekcj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l1dy"]
+size = Vector2(40, 40)
+
+[node name="MainBase" type="StaticBody2D" groups=["playerstructure"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3l1dy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("1_ekcj1")

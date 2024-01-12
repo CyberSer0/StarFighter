@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8r3uv3eeev47"]
+
+[ext_resource type="Texture2D" uid="uid://b1nqxsmfc8p1s" path="res://Textures/collectable_material.png" id="1_02vlr"]
+[ext_resource type="Script" path="res://Collectables/CollectableMaterial.gd" id="1_bjtth"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2r074"]
+radius = 4.0
+
+[node name="CollectableMaterial" type="Node2D"]
+script = ExtResource("1_bjtth")
+
+[node name="CollectableMaterial" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_02vlr")
+
+[node name="CollectableArea" type="Area2D" parent="." groups=["collectable", "material"]]
+collision_layer = 8
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableArea"]
+shape = SubResource("CircleShape2D_2r074")

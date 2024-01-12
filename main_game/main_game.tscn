@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://v68ueuhnadb4"]
+
+[ext_resource type="Script" path="res://main_game/main_game.gd" id="1_m3iww"]
+[ext_resource type="PackedScene" uid="uid://wvsjn6r03b25" path="res://Player/player.tscn" id="1_pos2g"]
+[ext_resource type="Script" path="res://MainCamera.gd" id="2_g1di5"]
+[ext_resource type="PackedScene" uid="uid://c3v422jkymmkl" path="res://MainBase/MainBase.tscn" id="3_oatct"]
+[ext_resource type="PackedScene" uid="uid://bbewsayxcferk" path="res://Asteroid/Asteroid.tscn" id="5_3nl4h"]
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_m3iww")
+
+[node name="Player" parent="." instance=ExtResource("1_pos2g")]
+position = Vector2(0, 150)
+
+[node name="MainCamera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("2_g1di5")
+
+[node name="MainBase" parent="." instance=ExtResource("3_oatct")]
+
+[node name="Asteroid" parent="." instance=ExtResource("5_3nl4h")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-179, 49)
+current_rotation_speed = 0.873046
+
+[node name="Asteroid2" parent="." instance=ExtResource("5_3nl4h")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-87, 21)
+current_rotation_speed = 0.463855
+variant = 2
+
+[node name="Asteroid3" parent="." instance=ExtResource("5_3nl4h")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-102, 90)
+current_rotation_speed = -0.932187
+variant = 1
