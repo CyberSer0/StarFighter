@@ -8,15 +8,17 @@ const ROTATION_SPEED : float = 2.0
 @export var engine_particles_container : Node2D
 @export var strafing_engine_particles : Node2D
 
-@export_group("Essential Values")
+@export_group("Shooting")
 @export var aiming_point : Node2D
 @export var turret_container : Node2D
+@export var is_shooting : bool = false
+@onready var cd_timer : Timer = Timer.new()
 
 @export_subgroup("Movement")
 @export var steering_vertical : float
 @export var steering_horizontal : float
 @export var strafing_horizontal : float
-@export var strafe : int = 0.0 
+@export var strafe : int = 0 
 
 @export_group("Inventory")
 @export var inventory_red : float = 0.0
@@ -26,10 +28,14 @@ const ROTATION_SPEED : float = 2.0
 
 
 func _ready():
+	cd_timer.wait_time = turret_container.shooting_cooldown
+	cd_timer.connect("timeout", cd_timer_timeout)
+	add_child(cd_timer)
+	
 	GLOBALS.PLAYER = self
 
 
-func _physics_process(delta):
+func _process(delta):
 	steering_vertical = Input.get_axis("throttle_down", "throttle_up")
 	steering_horizontal = Input.get_axis("steer_left", "steer_right")
 	strafing_horizontal = Input.get_axis("strafe_right", "strafe_left")
@@ -44,12 +50,23 @@ func _physics_process(delta):
 	turret_container.look_at(aiming_point.global_position)
 	
 	move_and_slide()
+
+
+func _physics_process(delta):
+	if turret_container.can_shoot and is_shooting:
+		turret_container.shoot()
+		
+		cd_timer.start()
+	
 	
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot"):
-		turret_container.shoot()
-
+		is_shooting = true
+	
+	if event.is_action_released("shoot"):
+		is_shooting = false
+			
 
 func _exit_tree():
 	GLOBALS.PLAYER = null
@@ -65,6 +82,11 @@ func _on_collector_area_area_entered(area : Area2D):
 			_: print("[ X ] Failed to get collectable variant")
 		collectable.queue_free()
 		print(get_inventory())
+
+
+func cd_timer_timeout():
+	#print("[   ] CD Timeout")
+	turret_container.can_shoot = true
 
 
 func get_inventory():

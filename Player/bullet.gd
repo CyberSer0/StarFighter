@@ -17,10 +17,11 @@ func _ready():
 	$Timer.start(lifetime)
 
 
-func _process(delta):
+func _physics_process(delta):
 	degradation_value = $Timer.time_left / $Timer.wait_time
 	if degradation_value > 0.5:
 		scale = Vector2(degradation_value, degradation_value)
+	
 	move_and_collide(direction * speed * delta)
 
 

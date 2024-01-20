@@ -1,4 +1,3 @@
-@tool
 extends StaticBody2D
 
 @export_category("Max Values")
@@ -23,9 +22,10 @@ extends StaticBody2D
 func _ready():
 	current_rotation_speed = rng.randf_range(-max_rotation_speed, max_rotation_speed) 
 
-
-func _process(delta):
-	$Sprite2D.rotate(current_rotation_speed * delta)
+#
+#func _process(delta):
+	#$Sprite2D.rotate(current_rotation_speed * delta)
+	#pass
 
 
 func set_variant(value):
@@ -36,17 +36,6 @@ func set_variant(value):
 		_: modulate = Color.WHITE
 
 
-func _on_hit_box_body_entered(body):
-	print("[   ] Projectile hit")
-	destruction_particles.reparent(GLOBALS.GAMESCENE)
-	destruction_particles.process_material.direction = Vector3(global_position.direction_to(body.global_position).x, global_position.direction_to(body.global_position).y, 0).normalized()
-	destruction_particles.modulate = modulate
-	destruction_particles.emitting = true
-	body.queue_free()
-	queue_free()
-	generate_drops()
-	
-
 func generate_drops():
 	var drop_amt = rng.randi_range(1, max_drop_amount)
 	for i in range(0, drop_amt):
@@ -55,3 +44,15 @@ func generate_drops():
 		drop.rotation = randi_range(0, 360)
 		drop.variant = variant
 		GLOBALS.GAMESCENE.call_deferred("add_child", drop)
+
+
+func _on_hitbox_area_entered(area):
+	print("[   ] Projectile hit")
+	var body = area.get_parent()
+	destruction_particles.reparent(GLOBALS.GAMESCENE)
+	destruction_particles.process_material.direction = Vector3(global_position.direction_to(body.global_position).x, global_position.direction_to(body.global_position).y, 0).normalized()
+	destruction_particles.modulate = modulate
+	destruction_particles.emitting = true
+	body.queue_free()
+	queue_free()
+	generate_drops()

@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://v68ueuhnadb4"]
+[gd_scene load_steps=12 format=3 uid="uid://v68ueuhnadb4"]
 
 [ext_resource type="Script" path="res://main_game/main_game.gd" id="1_m3iww"]
 [ext_resource type="PackedScene" uid="uid://wvsjn6r03b25" path="res://Player/player.tscn" id="1_pos2g"]
 [ext_resource type="Script" path="res://MainCamera.gd" id="2_g1di5"]
 [ext_resource type="PackedScene" uid="uid://c3v422jkymmkl" path="res://MainBase/MainBase.tscn" id="3_oatct"]
 [ext_resource type="PackedScene" uid="uid://bbewsayxcferk" path="res://Asteroid/Asteroid.tscn" id="5_3nl4h"]
+[ext_resource type="Script" path="res://test.gd" id="6_c2xh8"]
+
+[sub_resource type="Gradient" id="Gradient_gigcv"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o35yp"]
+gradient = SubResource("Gradient_gigcv")
+width = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhvvn"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7np8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaubs"]
+size = Vector2(15.1641, 14.5197)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_m3iww")
@@ -20,17 +35,45 @@ script = ExtResource("2_g1di5")
 
 [node name="Asteroid" parent="." instance=ExtResource("5_3nl4h")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(-179, 49)
-current_rotation_speed = 0.873046
+position = Vector2(127, 181)
+current_rotation_speed = 0.635243
 
 [node name="Asteroid2" parent="." instance=ExtResource("5_3nl4h")]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(-87, 21)
-current_rotation_speed = 0.463855
+position = Vector2(108, 94)
+current_rotation_speed = -0.0909205
 variant = 2
 
 [node name="Asteroid3" parent="." instance=ExtResource("5_3nl4h")]
 modulate = Color(0, 0, 1, 1)
-position = Vector2(-102, 90)
-current_rotation_speed = -0.932187
+position = Vector2(131, 133)
+current_rotation_speed = -0.861886
 variant = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-147, 98)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("6_c2xh8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(6, 94)
+texture = SubResource("GradientTexture1D_o35yp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rhvvn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-129.582, 169.26)
+collision_layer = 4
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+shape = SubResource("RectangleShape2D_q7np8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_gaubs")
+debug_color = Color(0.964706, 0, 0.498039, 0.419608)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
