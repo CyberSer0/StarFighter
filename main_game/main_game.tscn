@@ -1,31 +1,45 @@
-[gd_scene load_steps=12 format=3 uid="uid://v68ueuhnadb4"]
+[gd_scene load_steps=9 format=3 uid="uid://v68ueuhnadb4"]
 
 [ext_resource type="Script" path="res://main_game/main_game.gd" id="1_m3iww"]
 [ext_resource type="PackedScene" uid="uid://wvsjn6r03b25" path="res://Player/player.tscn" id="1_pos2g"]
+[ext_resource type="PackedScene" uid="uid://chfrdede41efk" path="res://StarFighter/UI/GameHUD.tscn" id="2_4jeta"]
 [ext_resource type="Script" path="res://MainCamera.gd" id="2_g1di5"]
+[ext_resource type="PackedScene" uid="uid://d2a6g4c4x5mb0" path="res://StarFighter/UI/GameBG.tscn" id="3_137oo"]
 [ext_resource type="PackedScene" uid="uid://c3v422jkymmkl" path="res://MainBase/MainBase.tscn" id="3_oatct"]
 [ext_resource type="PackedScene" uid="uid://bbewsayxcferk" path="res://Asteroid/Asteroid.tscn" id="5_3nl4h"]
-[ext_resource type="Script" path="res://test.gd" id="6_c2xh8"]
 
-[sub_resource type="Gradient" id="Gradient_gigcv"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_o35yp"]
-gradient = SubResource("Gradient_gigcv")
-width = 16
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhvvn"]
-size = Vector2(100, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7np8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaubs"]
-size = Vector2(15.1641, 14.5197)
+[sub_resource type="Environment" id="Environment_nxgv0"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_blend_mode = 1
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_m3iww")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nxgv0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameHUD" parent="CanvasLayer" instance=ExtResource("2_4jeta")]
+
+[node name="GameBG" parent="CanvasLayer" instance=ExtResource("3_137oo")]
+
 [node name="Player" parent="." instance=ExtResource("1_pos2g")]
 position = Vector2(0, 150)
+engine_particles_container = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":1.57079,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://Player/EngineParticlesContainer.gd"),"player_direction":0,"engine_particles_fwd":Object(GPUParticles2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"emitting":false,"amount":64,"amount_ratio":1.0,"sub_emitter":NodePath(""),"process_material":null,"texture":null,"lifetime":0.2,"one_shot":false,"preprocess":0.0,"speed_scale":1.0,"explosiveness":0.0,"randomness":0.0,"fixed_fps":30,"interpolate":true,"fract_delta":true,"interp_to_end":0.0,"collision_base_size":1.0,"visibility_rect":Rect2(-100, -100, 200, 200),"local_coords":false,"draw_order":1,"trail_enabled":false,"trail_lifetime":0.3,"trail_sections":8,"trail_section_subdivisions":4,"script":null)
+,"engine_particles_bwd":Object(GPUParticles2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"emitting":false,"amount":64,"amount_ratio":1.0,"sub_emitter":NodePath(""),"process_material":null,"texture":null,"lifetime":0.2,"one_shot":false,"preprocess":0.0,"speed_scale":1.0,"explosiveness":0.0,"randomness":0.0,"fixed_fps":30,"interpolate":true,"fract_delta":true,"interp_to_end":0.0,"collision_base_size":1.0,"visibility_rect":Rect2(-100, -100, 200, 200),"local_coords":false,"draw_order":1,"trail_enabled":false,"trail_lifetime":0.3,"trail_sections":8,"trail_section_subdivisions":4,"script":null)
+)
+
+strafing_engine_particles = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":1.57079,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://Player/StrafingParticles.gd"),"strafing_direction":0,"strafing_particles_right":Object(GPUParticles2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(12, 2.66552e-05),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"emitting":false,"amount":32,"amount_ratio":1.0,"sub_emitter":NodePath(""),"process_material":null,"texture":null,"lifetime":1.0,"one_shot":false,"preprocess":0.0,"speed_scale":1.0,"explosiveness":0.0,"randomness":0.0,"fixed_fps":30,"interpolate":true,"fract_delta":true,"interp_to_end":0.0,"collision_base_size":1.0,"visibility_rect":Rect2(-100, -100, 200, 200),"local_coords":false,"draw_order":1,"trail_enabled":false,"trail_lifetime":0.3,"trail_sections":8,"trail_section_subdivisions":4,"script":null)
+,"strafing_particles_left":Object(GPUParticles2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-12, -2.66552e-05),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"emitting":false,"amount":32,"amount_ratio":1.0,"sub_emitter":NodePath(""),"process_material":null,"texture":null,"lifetime":1.0,"one_shot":false,"preprocess":0.0,"speed_scale":1.0,"explosiveness":0.0,"randomness":0.0,"fixed_fps":30,"interpolate":true,"fract_delta":true,"interp_to_end":0.0,"collision_base_size":1.0,"visibility_rect":Rect2(-100, -100, 200, 200),"local_coords":false,"draw_order":1,"trail_enabled":false,"trail_lifetime":0.3,"trail_sections":8,"trail_section_subdivisions":4,"script":null)
+)
+
+aiming_point = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":null)
+
+turret_container = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://Player/TurretContainer.gd"),"shooting_cooldown":0.01,"can_shoot":true)
+
 
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -34,46 +48,16 @@ script = ExtResource("2_g1di5")
 [node name="MainBase" parent="." instance=ExtResource("3_oatct")]
 
 [node name="Asteroid" parent="." instance=ExtResource("5_3nl4h")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(127, 181)
-current_rotation_speed = 0.635243
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(149, 96)
+current_rotation_speed = -0.631379
 
 [node name="Asteroid2" parent="." instance=ExtResource("5_3nl4h")]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(108, 94)
-current_rotation_speed = -0.0909205
-variant = 2
-
-[node name="Asteroid3" parent="." instance=ExtResource("5_3nl4h")]
-modulate = Color(0, 0, 1, 1)
-position = Vector2(131, 133)
-current_rotation_speed = -0.861886
+position = Vector2(173, 132)
+current_rotation_speed = 0.538728
 variant = 1
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-147, 98)
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("6_c2xh8")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-scale = Vector2(6, 94)
-texture = SubResource("GradientTexture1D_o35yp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_rhvvn")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-129.582, 169.26)
-collision_layer = 4
-
-[node name="Area2D" type="Area2D" parent="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
-shape = SubResource("RectangleShape2D_q7np8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_gaubs")
-debug_color = Color(0.964706, 0, 0.498039, 0.419608)
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[node name="Asteroid3" parent="." instance=ExtResource("5_3nl4h")]
+position = Vector2(163, 173)
+current_rotation_speed = 0.588149
+variant = 2

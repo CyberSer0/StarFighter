@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://vhm8cffidfw4"]
 
 [ext_resource type="Script" path="res://loading_scene/loading.gd" id="1_wbr0c"]
-[ext_resource type="PackedScene" uid="uid://v68ueuhnadb4" path="res://main_game/main_game.tscn" id="2_7ol0g"]
+[ext_resource type="PackedScene" uid="uid://3usbtp83inji" path="res://StarFighter/Scenes/MainGame.tscn" id="2_gr5qa"]
 [ext_resource type="Texture2D" uid="uid://bk1nlden14qbx" path="res://loading_scene/loading_circle.png" id="2_qtcvt"]
 [ext_resource type="Script" path="res://loading_scene/sprite_viewport_stretch.gd" id="3_gb7si"]
 
@@ -137,7 +137,7 @@ font_size = 32
 
 [node name="loading_scene" type="Node2D"]
 script = ExtResource("1_wbr0c")
-main_game_scene = ExtResource("2_7ol0g")
+main_game_scene = ExtResource("2_gr5qa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

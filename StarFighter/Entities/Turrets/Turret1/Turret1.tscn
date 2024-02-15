@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bho060gu3ao2t"]
+
+[ext_resource type="Script" path="res://StarFighter/Entities/Turrets/Turret1/Turret1.gd" id="1_1ixq7"]
+[ext_resource type="ArrayMesh" uid="uid://bmvx8swo6nkc5" path="res://StarFighter/Assets/Models/Turrets/Turret1.obj" id="1_2kig8"]
+
+[node name="Turret1" type="Node3D"]
+script = ExtResource("1_1ixq7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0378181, 0, -0.0518936)
+mesh = ExtResource("1_2kig8")
+
+[node name="BulletSpawner" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736508, 0.254523, 0)

@@ -8,9 +8,11 @@ radius = 4.0
 
 [node name="CollectableMaterial" type="Node2D"]
 script = ExtResource("1_bjtth")
+pop_time = 0.25
 
 [node name="CollectableMaterial" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_02vlr")
 
 [node name="CollectableArea" type="Area2D" parent="." groups=["collectable", "material"]]

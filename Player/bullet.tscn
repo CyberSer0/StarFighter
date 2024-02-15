@@ -3,16 +3,24 @@
 [ext_resource type="Script" path="res://Player/bullet.gd" id="1_nor1f"]
 [ext_resource type="Texture2D" uid="uid://dhbkat3lwewwn" path="res://Textures/bullet.png" id="2_spckh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a0fn"]
-size = Vector2(4, 4)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcgt6"]
 size = Vector2(4, 4)
 
-[node name="bullet" type="StaticBody2D" groups=["kineticprojectile", "playerprojectile", "projectile"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a0fn"]
+size = Vector2(4, 4)
+
+[node name="bullet" type="CharacterBody2D" groups=["kineticprojectile", "playerprojectile", "projectile"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_nor1f")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_mcgt6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5a0fn")
@@ -24,11 +32,5 @@ texture = ExtResource("2_spckh")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_mcgt6")
-
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

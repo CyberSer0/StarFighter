@@ -21,9 +21,18 @@ const ROTATION_SPEED : float = 2.0
 @export var strafe : int = 0 
 
 @export_group("Inventory")
-@export var inventory_red : float = 0.0
-@export var inventory_blue : float = 0.0
-@export var inventory_green : float = 0.0
+@export var inventory_red : int = 0 :
+	set(amount):
+		GLOBALS.CURRENT_HUD.get_node("InvContainer/Amounts/RedAmount").text = str(amount)
+		inventory_red = amount
+@export var inventory_green : int = 0 :
+	set(amount):
+		GLOBALS.CURRENT_HUD.get_node("InvContainer/Amounts/GreenAmount").text = str(amount)
+		inventory_green = amount
+@export var inventory_blue : int = 0 :
+	set(amount):
+		GLOBALS.CURRENT_HUD.get_node("InvContainer/Amounts/BlueAmount").text = str(amount)
+		inventory_blue = amount
 
 
 

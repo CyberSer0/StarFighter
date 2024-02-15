@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d1yg38pesuysh"
+path="res://.godot/imported/Bullet1.obj-5ca39130d5718262efb316e196e67676.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Bullet1.obj-5ca39130d5718262efb316e196e67676.mesh"]
+
+source_file="res://StarFighter/Assets/Models/Ammo/Bullet1.obj"
+dest_files=["res://.godot/imported/Bullet1.obj-5ca39130d5718262efb316e196e67676.mesh", "res://.godot/imported/Bullet1.obj-5ca39130d5718262efb316e196e67676.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

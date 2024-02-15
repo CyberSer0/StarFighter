@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ch68nl0kdy4a3"
+path="res://.godot/imported/Raptor.obj-2134cb352e3037c5296afdc83a1de925.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Raptor.obj-2134cb352e3037c5296afdc83a1de925.mesh"]
+
+source_file="res://StarFighter/Assets/Models/Raptor/Raptor.obj"
+dest_files=["res://.godot/imported/Raptor.obj-2134cb352e3037c5296afdc83a1de925.mesh", "res://.godot/imported/Raptor.obj-2134cb352e3037c5296afdc83a1de925.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

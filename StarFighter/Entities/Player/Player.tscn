@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://giol4t7b41xl"]
+
+[ext_resource type="ArrayMesh" uid="uid://ch68nl0kdy4a3" path="res://StarFighter/Assets/Models/Raptor/Raptor.obj" id="1_8xwue"]
+[ext_resource type="Script" path="res://StarFighter/Entities/Player/Player.gd" id="1_uy0ht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0jur"]
+size = Vector3(1.10852, 0.623291, 1.58496)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_40mub"]
+size = Vector3(0.494873, 0.623291, 0.544922)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_uy0ht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+mesh = ExtResource("1_8xwue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.246521, -0.305602, 0)
+shape = SubResource("BoxShape3D_n0jur")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.550541, -0.305602, 0)
+shape = SubResource("BoxShape3D_40mub")
+
+[node name="TurretContainer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.322952, 0, 0)

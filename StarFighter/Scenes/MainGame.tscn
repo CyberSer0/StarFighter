@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://3usbtp83inji"]
+
+[ext_resource type="Script" path="res://main_game/main_game.gd" id="1_881we"]
+[ext_resource type="PackedScene" uid="uid://chfrdede41efk" path="res://StarFighter/UI/GameHUD.tscn" id="1_fpa6f"]
+[ext_resource type="PackedScene" uid="uid://m5327yej2sxu" path="res://StarFighter/Entities/MainBase/MainBase.tscn" id="1_k6ph0"]
+[ext_resource type="PackedScene" uid="uid://3mikoby1qjmm" path="res://StarFighter/Entities/CameraPoint/CameraPoint.tscn" id="4_6mef5"]
+[ext_resource type="Texture2D" uid="uid://cfwbjn3mmrt6h" path="res://Textures/parallax_stars.png" id="5_twc2u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_itgyn"]
+sky_top_color = Color(0.447059, 0.27451, 0.45098, 1)
+sky_horizon_color = Color(0.756863, 0.372549, 0.403922, 1)
+ground_bottom_color = Color(0.615686, 0.54902, 0.470588, 1)
+ground_horizon_color = Color(0.568627, 0.666667, 0.780392, 1)
+
+[sub_resource type="Sky" id="Sky_me4m8"]
+sky_material = SubResource("ProceduralSkyMaterial_itgyn")
+
+[sub_resource type="Environment" id="Environment_sfgdi"]
+sky = SubResource("Sky_me4m8")
+ambient_light_source = 3
+ambient_light_color = Color(0.329412, 0.227451, 0.529412, 1)
+ambient_light_sky_contribution = 0.5
+reflected_light_source = 2
+glow_enabled = true
+glow_intensity = 0.2
+glow_blend_mode = 1
+fog_light_color = Color(0.0196078, 0.027451, 0.113725, 1)
+volumetric_fog_albedo = Color(0.180392, 0.0823529, 0.227451, 1)
+
+[node name="MainGame" type="Node3D"]
+script = ExtResource("1_881we")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameHUD" parent="CanvasLayer" instance=ExtResource("1_fpa6f")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(100, 100)
+motion_mirroring = Vector2(1280, 720)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("5_twc2u")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(150, 150)
+motion_offset = Vector2(320, 180)
+motion_mirroring = Vector2(640, 360)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2(-0.5, -0.5)
+texture = ExtResource("5_twc2u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sfgdi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.906308, 0.374867, -0.195143, 0, 0.461749, 0.887011, 0.422618, -0.803905, 0.418486, 0, 11.6322, 0)
+light_color = Color(1.2, 1.2, 1.1, 1)
+shadow_enabled = true
+
+[node name="MainBase" parent="." instance=ExtResource("1_k6ph0")]
+
+[node name="CameraPoint" parent="." instance=ExtResource("4_6mef5")]
